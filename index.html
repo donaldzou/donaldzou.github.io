@@ -13,13 +13,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="assets/img/terminal-favicon.png"/>
 </head>
 <body>
-<!--    <div class="gradient-bg"></div>-->
+    <div class="gradient-bg"></div>
     <div class="status-bar">
-        <p class="status-bar-wifi"><i class="bi bi-wifi"></i></p>
-        <p class="status-bar-time"></p>
+        <div class="row">
+            <div class="col status-bar-left">
+                <img src="https://avatars.githubusercontent.com/u/25237201?v=4">
+                <div class="menu-group terminal-menu-group">
+                    <p class="menu-link menu-link-header">Terminal</p>
+                    <p class="menu-link">Shell</p>
+                    <p class="menu-link">Edit</p>
+                    <p class="menu-link">View</p>
+                    <p class="menu-link">Window</p>
+                    <p class="menu-link">Help</p>
+                </div>
+            </div>
+            <div class="col status-bar-right">
+                <p>
+                    <i class="bi bi-battery-charging"></i>
+                </p>
+                <p class="status-bar-wifi">
+                    <i class="bi bi-wifi"></i>
+                </p>
+                <p class="status-bar-time"></p>
+            </div>
+        </div>
     </div>
+
     <div class="wrapper">
         <div class="loader">
             <div class="avatar-wrapper">
@@ -33,18 +55,25 @@
         <div class="terminal-main">
             <div class="terminal-header">
                 <div class="row">
-                    <div class="col-4 terminal-header-button-group">
-                        <div class="terminal-header-button close-button"></div>
-                        <div class="terminal-header-button mini-button"></div>
-                        <div class="terminal-header-button full-button"></div>
+                    <div class="col-4">
+                        <div class="terminal-header-button-group">
+                            <div class="terminal-header-button close-button">
+                                <i class="bi bi-x button-icon"></i>
+                            </div>
+                            <div class="terminal-header-button mini-button">
+                                <i class="bi bi-dash button-icon"></i>
+                            </div>
+                            <div class="terminal-header-button full-button">
+                                <i class="bi bi-aspect-ratio button-icon" style="font-size: 10px;"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-4 terminal-header-name">donaldzou —— -zsh —— 72x65</div>
+                    <div class="col-4 terminal-header-name">donaldzou ——
+                        <span style="padding: 0 5px" class="running_process">-zsh</span>——
+                        <span style="padding-left: 5px" class="terminal-width">72</span>x<span class="terminal-height">28</span></div>
                 </div>
             </div>
             <div class="terminal-body">
-                <p class="command">Last login: Thu May 20 01:23:04 on ttys000</p>
-                <br>
-                <p class="command">donaldzou@Donalds-Macbook-Pro ~ % </p><div class="input-indicator"></div>
             </div>
         </div>
     </div>
@@ -52,14 +81,28 @@
 
 
     <div class="app-bar">
-        <div class="app-bar-img-wrapper">
-            <img src="assets/img/terminal.png" class="app-bar-img">
-            <div class="app-light"></div>
+        <div class="apps">
+            <div class="app-bar-img-wrapper">
+                <img src="assets/img/terminal.png" class="app-bar-img">
+                <div class="app-light app-running"></div>
+            </div>
         </div>
     </div>
+    <div class="lockscreen-control">
+        <div class="lockscreen-control-button lockscreen-shutdown">
+            <i class="bi bi-power"></i>
+            Shut Down
+        </div>
+        <div class="lockscreen-control-button lockscreen-shutdown">
+            <i class="bi bi-arrow-clockwise"></i>
+            Restart
+        </div>
+    </div>
+
 </body>
 <script src="assets/js/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-<script src="assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<script type="module" src="assets/js/main.js"></script>
 
 </html>
