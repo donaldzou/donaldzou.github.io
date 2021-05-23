@@ -27,6 +27,7 @@ function terminal_init(){
 }
 
 let commandHistory = new historyCommand();
+commandHistory.addCommand("");
 let tmpCommand = new commandObj("");
 function detect_key(){
     $(document).keydown(function(event){
@@ -46,7 +47,7 @@ function detect_key(){
             else if (commandHistory.tail.command.length > 0){
                 commandHistory.tail.command = commandHistory.tail.command.slice(0,-1);
                 terminal_print_history_command(commandHistory.tail)
-                console.log(commandHistory)
+
             }
         }else if(event.code === "Enter"){
             if (!Object.is(commandHistory.currentCommand,commandHistory.tail)){
@@ -56,7 +57,7 @@ function detect_key(){
                     tmpCommand = new commandObj("");
                 }else{
                     commandHistory.tail.setCommand(commandHistory.currentCommand.getCommand());
-                    console.log(commandHistory)
+
                 }
             }
             exec_command(commandHistory.tail.command)
@@ -65,15 +66,13 @@ function detect_key(){
         }else if(event.code === "ArrowUp"){
             if (commandHistory.currentCommand !== undefined && commandHistory.currentCommand.previous !== undefined){
                 commandHistory.setCurrentCommand(commandHistory.currentCommand.previous)
-                tmpCommand = commandHistory.currentCommand;
-                console.log(tmpCommand)
+                tmpCommand.setCommand(commandHistory.currentCommand.command.slice());
                 terminal_print_history_command(commandHistory.currentCommand)
             }
         }else if(event.code === "ArrowDown"){
             if (commandHistory.currentCommand !== undefined && commandHistory.currentCommand.next !== undefined){
                 commandHistory.setCurrentCommand(commandHistory.currentCommand.next)
-                tmpCommand = commandHistory.currentCommand;
-                console.log(tmpCommand)
+                tmpCommand.setCommand(commandHistory.currentCommand.command.slice());
                 terminal_print_history_command(commandHistory.currentCommand)
             }
         }
@@ -81,19 +80,26 @@ function detect_key(){
             if (regex.test(event.code) && event.key.length === 1) {
                 if (commandHistory.top === undefined){
                     commandHistory.addCommand(event.key);
-                }else{
-                    commandHistory.tail.command += event.key
+                    terminal_print_history_command(commandHistory.tail)
+                }else if(!Object.is(commandHistory.currentCommand, commandHistory.tail)){
+                    tmpCommand.setCommand(tmpCommand.getCommand()+event.key);
+                    terminal_print_history_command(tmpCommand)
                 }
-                $(".terminal-body .command").last().append(event.key)
-                // user_input += event.key;
-                console.log(commandHistory)
+                else{
+                    commandHistory.tail.command += event.key
+                    terminal_print_history_command(commandHistory.tail)
+                }
             }
         }
     });
 }
-
 function terminal_print_history_command(commandObj){
     $(".terminal-body .command").last().html(newline_content+commandObj.command)
+}
+export function terminal_clear(){
+    if (commandHistory.top === undefined || commandHistory.tail.command.length > 0){
+        commandHistory.addCommand("");
+    }
 }
 
 function terminal_new_line(){
@@ -104,16 +110,12 @@ function terminal_new_line(){
     }
     $(".running_process").html(running_process);
 }
-
 function terminal_print(lines){
     const terminal = $(".terminal-body");
     for (let i in lines){
         terminal.append("<br><p class='command'>"+lines[i]+"</p>")
     }
 }
-
-
-
 
 // Terminal Window Control
 const terminal_main = $(".terminal-main");
@@ -134,18 +136,17 @@ $(".app-bar-img").click(function (){
         terminal_main.removeClass("terminal-hidden");
     }
 })
-
 function full_terminal(){
     if (!terminal_main.hasClass("terminal-full")){
         terminal_main.addClass("terminal-full");
-        $(".terminal-full").css("margin", ($(".status-bar").height())+"px auto auto auto !important");
+        $(".terminal-full").css("margin-top", ($(".status-bar").outerHeight())+"px");
         $(".terminal-full").css("height",($(window).height() - $(".status-bar").height() - $(".app-bar").height()-20)+"px");
     }else{
         $(".terminal-full").css("height","")
+        $(".terminal-full").css("margin-top", "");
         terminal_main.removeClass("terminal-full");
     }
 }
-
 $( window ).resize(function() {
     if (terminal_main.hasClass("terminal-full")){
         terminal_main.addClass("terminal-full");
@@ -153,15 +154,12 @@ $( window ).resize(function() {
         $(".terminal-full").css("height",($(window).height() - $(".status-bar").height() - $(".app-bar").height()-20)+"px");
     }
 });
-
 $(".full-button").click(function (){
     full_terminal();
 })
-
 $(".terminal-header").dblclick(function (){
     full_terminal();
 })
-
 $(".close-button").click(function (){
     if (!terminal_main.hasClass("terminal-closed")){
         terminal_main.addClass("terminal-closed");
@@ -203,8 +201,10 @@ function terminal_window_show(){
 // detect_key();
 // $(".terminal-wrapper").css("display", "block");
 // app_bar_show();
-// status_bar_show();
+// $(".status-bar-left img").css("display", "block");
 // status_bar_time();
+// status_bar_show();
+
 
 
 export {terminal_window_show, terminal_new_line, terminal_init,terminal_print}

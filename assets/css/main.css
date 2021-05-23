@@ -1,6 +1,7 @@
 body{
     background-color: #1e1e1e;
     font-family: 'Inter', sans-serif;
+    transition: background-color ease-in-out 0.4s;
 }
 
 .wrapper{
@@ -80,7 +81,6 @@ body{
     position: fixed;
     background: -webkit-linear-gradient(to left, #2F80ED, #56CCF2);
     background: linear-gradient(45deg, #00265a, #a74a22);
-    transition: opacity ease-in-out 1.5s;
 }
 
 .status-bar{
@@ -136,11 +136,13 @@ body{
 }
 
 .status-bar .status-bar-right p{
-    margin-left: 0.5rem;
+    margin-left: 16px;
 }
 
 .status-bar i{
     font-size: 17px;
+    display: flex;
+    align-items: center;
 }
 
 .status-bar-time{
@@ -218,16 +220,13 @@ body{
     width: 100%;
     position: fixed;
     display: none;
-    /*justify-content: center;*/
-    /*align-content: center;*/
-    /*flex-direction: column;*/
 }
 
 .terminal-main{
     width: 900px;
     height: 600px;
     background-color: #2c2c2c;
-    margin: 8rem auto auto auto!important;
+    margin: 8rem auto auto auto;
     border-radius: 5px;
     box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
     animation-duration: 0.5s;
@@ -356,6 +355,23 @@ body{
 }
 
 .terminal-full{
-    margin: 29px auto auto auto !important;
     width: 100%;
+}
+
+.dropdown-menu {
+    background-color: rgba(114, 114, 114, 0.62);
+    color: white !important;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.dropdown-item{
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: white;
+    background-color: #409bff;
 }

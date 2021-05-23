@@ -1,4 +1,4 @@
-import {terminal_init, terminal_new_line, terminal_print} from "./terminal.js";
+import {terminal_init, terminal_new_line, terminal_print, terminal_clear} from "./terminal.js";
 
 class historyCommand{
     constructor() {
@@ -86,6 +86,7 @@ function exec_command(cmd){
 // Terminal Functions
 const clear = function () {
     terminal_init();
+    terminal_clear();
 };
 const cmd_not_found = function (cmd) {
     terminal_print(['zsh:  command not found:  ' + cmd])

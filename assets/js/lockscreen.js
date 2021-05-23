@@ -58,9 +58,35 @@ $(".avatar-wrapper").on("click", $(".loader-bar-wrapper"),function (){
     loader_hide();
     lockscreen_control_hide();
     app_bar_show();
-    $(".gradient-bg").css("opacity",100)
-    $(".status-bar").css("background-color","#7272729e");
+    $(".gradient-bg").css("transition","opacity ease-in-out 1.5s").css("opacity",100)
+    $(".status-bar").css("background-color","#13131370");
     $(".status-bar-left img").addClass("animate__animated animate__fadeInDown").css("display", "block")
 })
+
+
+$(".lockscreen-shutdown").click(function (){
+    $(".lockscreen-control").addClass("animate__animated animate__fadeOutDown");
+    $(".status-bar").css("top","");
+    $(".avatar-name").css("opacity","");
+    $(".avatar-wrapper").css("margin-bottom","");
+    setTimeout(function (){
+        $(".avatar-wrapper").addClass("animate__animated animate__fadeOut");
+        setTimeout(function (){
+            $("body").css("background-color", "#000000").html("");
+        },800)
+    },300)
+});
+
+$(".lockscreen-restart").click(function (){
+    $(".lockscreen-control").addClass("animate__animated animate__fadeOutDown");
+    $(".status-bar").css("top","");
+    $(".avatar-name").css("opacity","");
+    $(".avatar-wrapper").css("margin-bottom","");
+    setTimeout(function (){
+        $(".avatar-wrapper").addClass("animate__animated animate__fadeOut");
+        location.reload();
+    },300)
+});
+
 
 export {startup, status_bar_time, status_bar_show};

@@ -20,7 +20,12 @@
     <div class="status-bar">
         <div class="row">
             <div class="col status-bar-left">
-                <img src="https://avatars.githubusercontent.com/u/25237201?v=4">
+                <img src="https://avatars.githubusercontent.com/u/25237201?v=4" id="system_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+<!--                <ul class="dropdown-menu" aria-labelledby="system_dropdown">-->
+<!--                    <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--                </ul>-->
                 <div class="menu-group terminal-menu-group">
                     <p class="menu-link menu-link-header">Terminal</p>
                     <p class="menu-link">Shell</p>
@@ -31,12 +36,9 @@
                 </div>
             </div>
             <div class="col status-bar-right">
-                <p>
-                    <i class="bi bi-battery-charging"></i>
-                </p>
-                <p class="status-bar-wifi">
-                    <i class="bi bi-wifi"></i>
-                </p>
+                <p><i class="bi bi-volume-down-fill"></i></p>
+                <p><i class="bi bi-battery-charging"></i></p>
+                <p class="status-bar-wifi"><i class="bi bi-wifi"></i></p>
                 <p class="status-bar-time"></p>
             </div>
         </div>
@@ -93,7 +95,7 @@
             <i class="bi bi-power"></i>
             Shut Down
         </div>
-        <div class="lockscreen-control-button lockscreen-shutdown">
+        <div class="lockscreen-control-button lockscreen-restart">
             <i class="bi bi-arrow-clockwise"></i>
             Restart
         </div>
