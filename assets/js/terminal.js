@@ -16,7 +16,6 @@ function terminal_init(){
     $(".running_process").html(running_process);
     const terminal = $(".terminal-body");
     terminal.html(cmd_line_one+newline);
-    // user_input = "";
     $(".terminal-menu-group").css('display', 'flex');
     let animation_delay = 0;
     $(".terminal-menu-group .menu-link").each(function(){
@@ -36,10 +35,9 @@ function detect_key(){
         if ($(".terminal-body .command").last().width() >= command_max_width){
             $(".input-indicator").remove();
             $(".terminal-body").append(empty_newline)
-            $(".terminal-body").scrollTop( $(".terminal-body").height());
+            $(".terminal-body").scrollTop($(".terminal-body").height());
         }
         if (event.code === "Backspace"){
-            const newhtml = $(".terminal-body .command").last().html().slice(0,-1)
             if (!Object.is(commandHistory.currentCommand, commandHistory.tail)){
                 tmpCommand.setCommand(tmpCommand.getCommand().slice(0,-1));
                 terminal_print_history_command(tmpCommand)
@@ -64,12 +62,14 @@ function detect_key(){
         }else if(event.code === "Tab"){
             event.preventDefault();
         }else if(event.code === "ArrowUp"){
+            event.preventDefault();
             if (commandHistory.currentCommand !== undefined && commandHistory.currentCommand.previous !== undefined){
                 commandHistory.setCurrentCommand(commandHistory.currentCommand.previous)
                 tmpCommand.setCommand(commandHistory.currentCommand.command.slice());
                 terminal_print_history_command(commandHistory.currentCommand)
             }
         }else if(event.code === "ArrowDown"){
+            event.preventDefault();
             if (commandHistory.currentCommand !== undefined && commandHistory.currentCommand.next !== undefined){
                 commandHistory.setCurrentCommand(commandHistory.currentCommand.next)
                 tmpCommand.setCommand(commandHistory.currentCommand.command.slice());
@@ -124,12 +124,12 @@ $(".mini-button").click(function (){
         terminal_main.addClass("terminal-hidden");
     }
 });
-$(".app-bar-img").click(function (){
+$("#terminal .app-bar-img").click(function (){
     if (terminal_main.hasClass("terminal-closed")){
         terminal_main.removeClass("terminal-closed");
         $(".terminal-wrapper").css("display","block");
-        $(".app-light").addClass("app-running");
-        $(".app-bar-img").addClass("app-bar-img-animation");
+        $("#terminal .app-light").addClass("app-running");
+        $("#terminal .app-bar-img").addClass("app-bar-img-animation");
         terminal_init();
     }
     else if (terminal_main.hasClass("terminal-hidden")){

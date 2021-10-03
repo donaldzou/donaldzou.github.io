@@ -68,6 +68,8 @@ function exec_command(cmd){
         "./donald --code": donald_code,
         "./donald --education": donald_education,
         "./donald --jobs": donald_jobs,
+        "./donald --github":donald_github,
+        "./donald --linkedin":donald_linkedin,
         "ls": ls
     }
     $(".running_process").html(cmd);
@@ -82,6 +84,31 @@ function exec_command(cmd){
     }
 
 }
+const donald_github = function(){
+    let lines1 = ["Looking for Donald's GitHub page. Please wait..."]
+    let lines2 = ["Ah hah! Found it, this way please."];
+    terminal_print(lines1);
+    setTimeout(function (){
+        terminal_print(lines2);
+        setTimeout(function (){
+            window.open("https://github.com/donaldzou");
+        }, 500)
+        terminal_new_line();
+    }, 600)
+}
+const donald_linkedin = function(){
+    let lines1 = ["Looking for Donald's LinkedIn page. Please wait..."]
+    let lines2 = ["Ah hah! Found it, this way please."];
+    terminal_print(lines1);
+    setTimeout(function (){
+        terminal_print(lines2);
+        setTimeout(function (){
+            window.open("https://www.linkedin.com/in/donaldzou");
+        }, 500)
+        terminal_new_line();
+    }, 600)
+}
+
 
 // Terminal Functions
 const clear = function () {
@@ -101,6 +128,8 @@ const donald_help = function () {
         "  education: 🎓 Show Donald's education",
         "  intro: 📖 Show something about Donald",
         "  jobs: 💼 Show Donald's work experiences",
+        "  linkedin: 🧢 Open Donald's LinkedIn page",
+        "  github: 🤯 Open Donald's GitHub page",
         "  help: 🧐 Open this help menu"
     ]
     terminal_print(lines)
@@ -195,7 +224,7 @@ const donald_code = function (){
     let total_code_time = 0;
     let avg_code_time = 0;
     $.ajax({
-        "url": "https://api.github.com/users/donaldzou/repos",
+        "url": "https://api.github.com/users/donaldzou/repos?per_page=100",
         "method": "GET"
     }).done(function (res){
         git_data = res;
@@ -212,6 +241,7 @@ const donald_code = function (){
             type: 'GET',
             url: 'https://wakatime.com/share/@donaldzou/4b40bec4-c32a-4545-af66-e91eb768b92c.json',
             dataType: 'jsonp',
+            async:false,
         }).done(function (response){
             total_code_time = response['data']['grand_total']['human_readable_total'];
             avg_code_time = response['data']['grand_total']['human_readable_daily_average'];
