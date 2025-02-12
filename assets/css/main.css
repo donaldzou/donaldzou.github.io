@@ -28,7 +28,6 @@ body{
 }
 .avatar-wrapper{
     width: 170px;
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -36,7 +35,7 @@ body{
 }
 
 .loaded-avatar-wrapper{
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
 }
 
@@ -155,7 +154,7 @@ body{
 
 .lockscreen-control{
     position: fixed;
-    bottom: -60px;
+    bottom: -69px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -197,11 +196,14 @@ body{
     display: flex;
 }
 
-.app-bar-img{
-    width: 5rem;
+.app-bar-img, .app-bar-link-img{
+    width: 4rem;
     animation-duration: 2s;
     cursor: pointer;
+    margin: 8px;
 }
+
+
 
 .app-light{
     width: 6px;

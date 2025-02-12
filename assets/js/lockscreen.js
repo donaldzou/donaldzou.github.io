@@ -18,6 +18,19 @@ function startup(){
                         status_bar_show();
                         lockscreen_control_show();
 
+                        // Avatar Clicked
+                        $(".avatar-wrapper.loaded-avatar-wrapper").on("click",function (){
+                            loader_hide();
+                            lockscreen_control_hide();
+                            app_bar_show();
+                            $(".gradient-bg").css("transition","opacity ease-in-out 1.5s").css("opacity",100)
+                            $(".status-bar").css("background-color","#13131370");
+                            $(".status-bar-left img").addClass("animate__animated animate__fadeInDown").css("display", "block")
+                        })
+
+                        // loader_hide();
+                        // lockscreen_control_hide();
+                        // app_bar_show();
                     },1300)
                 }, 1400);
             },1800)
@@ -34,7 +47,7 @@ function status_bar_time(){
 }
 // Lockscreen Control Show
 function lockscreen_control_show(){
-    $(".lockscreen-control").css("bottom", "60px");
+    $(".lockscreen-control").css("bottom", "69px");
 }
 
 // Lockscreen control hide
@@ -53,15 +66,7 @@ function loader_hide(){
     },1000)
 }
 
-// Avatar Clicked
-$(".avatar-wrapper").on("click", $(".loader-bar-wrapper"),function (){
-    loader_hide();
-    lockscreen_control_hide();
-    app_bar_show();
-    $(".gradient-bg").css("transition","opacity ease-in-out 1.5s").css("opacity",100)
-    $(".status-bar").css("background-color","#13131370");
-    $(".status-bar-left img").addClass("animate__animated animate__fadeInDown").css("display", "block")
-})
+
 
 
 $(".lockscreen-shutdown").click(function (){
